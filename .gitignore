@@ -1,0 +1,11 @@
+# Ignore binaries
+seq
+pthread
+mpi
+algo/sort_seq
+algo/sort_pthread
+algo/sort_omp
+
+# Ignore object files and VSCode folders
+*.o
+.vscode/
