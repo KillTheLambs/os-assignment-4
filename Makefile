@@ -3,14 +3,14 @@ CC = gcc
 MPICC = mpicc
 
 # Flags: -O2 for optimization, -Wall for warnings
-# -fopenmp is included for OpenMP support in seq.c or mergeSort.c
+# -fopenmp is included for OpenMP support
 CFLAGS = -O2 -Wall -fopenmp
 LIBS = -lpthread
 
-# 'all' target builds everything
-all: seq pthread mpi mergeSort
+# 'all' target builds all matrix multiplication programs
+all: seq pthread mpi
 
-# 1. Sequential (and likely OpenMP if included in same file)
+# 1. Sequential (and OpenMP if included in seq.c)
 seq: seq.c
 	$(CC) $(CFLAGS) -o seq seq.c $(LIBS)
 
@@ -22,10 +22,6 @@ pthread: pthread.c
 mpi: mpi.c
 	$(MPICC) $(CFLAGS) -o mpi mpi.c
 
-# 4. Custom Algorithm (Merge Sort)
-mergeSort: mergeSort.c
-	$(CC) $(CFLAGS) -o mergeSort mergeSort.c $(LIBS)
-
 # Clean up compiled binaries
 clean:
-	rm -f seq pthread mpi mergeSort
+	rm -f seq pthread mpi
